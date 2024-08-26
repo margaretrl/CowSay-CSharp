@@ -11,9 +11,7 @@ public class Joke
 
 public class Program
 {
-       
     private static readonly HttpClient client = new HttpClient();
-
 
     // Method to fetch a random joke from source - https://github.com/15Dkatz/official_joke_api
     public static async Task<Joke> GetJokeAsync()
@@ -130,8 +128,10 @@ public class Program
 
         var joke = await GetJokeAsync();
 
-        Console.ForegroundColor = ConsoleColor.Blue;
-        Console.WriteLine(@"
+        Console.ForegroundColor = ConsoleColor.Blue; // Logan - "Console foreground color is not changing in my terminal here."
+        /* Logan - "For some reason, when I run the application in my GitBash terminal the "WELCOME" graphic does not display fully.
+         * It gets cut off at the O letter and is not very clear. Might be something to look into. Not sure if it's just mine." */
+        Console.WriteLine(@"  
         ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓████████▓▒░▒▓█▓▒░      ░▒▓██████▓▒░ ░▒▓██████▓▒░░▒▓██████████████▓▒░░▒▓████████▓▒░ 
         ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░        
         ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░     ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░        
@@ -158,7 +158,7 @@ public class Program
                 if (answer == "y")
                 {
                     // Display  punchline
-                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.ForegroundColor = ConsoleColor.Green; // Logan - "Console foreground color is not changing in my terminal here."
                     CowSay(joke.Punchline, false);
                     Console.ForegroundColor = originalForegroundColor;
                     break;
@@ -168,7 +168,7 @@ public class Program
                     // Display "bruh" if user doesn't want to hear punchline
                     Console.ForegroundColor = ConsoleColor.Red;
                     CowSay("bruh", true);
-                    Console.ForegroundColor = originalForegroundColor;
+                    Console.ForegroundColor = originalForegroundColor; // Logan - "Console foreground color is not changing in my terminal here."
                     break;
                 }
                 else
@@ -188,13 +188,17 @@ public class Program
                     joke = await GetJokeAsync();
                     break;
                 }
+                /* Logan - "When I am prompted whether or not I want to hear another joke, if I press enter,
+                 * the app fails with a IndexOutOfRangeException. You may need to add some further validation here."
+                 */
                 else
                 {
                     Console.WriteLine("Invalid input. Please press 'y' for yes and 'n' for no.");
                 }
             }
         }
-        Console.ForegroundColor = ConsoleColor.Blue;
+
+        Console.ForegroundColor = ConsoleColor.Blue; // Logan - "Console foreground color is not changing in my terminal here."
         Console.WriteLine(@"
         ░▒▓███████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓████████▓▒░▒▓█▓▒░▒▓█▓▒░ 
         ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░▒▓█▓▒░ 
@@ -205,6 +209,5 @@ public class Program
         ░▒▓███████▓▒░   ░▒▓█▓▒░   ░▒▓████████▓▒░▒▓█▓▒░▒▓█▓▒░ 
 ");
         Console.ForegroundColor = originalForegroundColor;
-
     }
 }
